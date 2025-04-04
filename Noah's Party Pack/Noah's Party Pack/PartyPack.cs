@@ -37,7 +37,7 @@ namespace Noah_s_Party_Pack
         }
         void Start()
         {
-            CustomCard.BuildCard<MyCardName>();
+            CustomCard.BuildCard<EvasiveManeuvers>();
             MyPartyPack = this;
         }
     }
