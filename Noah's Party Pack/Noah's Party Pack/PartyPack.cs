@@ -43,6 +43,8 @@ namespace Noah_s_Party_Pack
             CustomCard.BuildCard<ForcePull>();
             CustomCard.BuildCard<Satellite>();
             CustomCard.BuildCard<Hoho>();
+            CustomCard.BuildCard<Mario>();
+
             MyPartyPack = this;
         }
     }
