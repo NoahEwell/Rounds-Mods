@@ -10,14 +10,16 @@ using UnityEngine;
 
 namespace Noah_s_Party_Pack.Cards
 {
-    class EvasiveManeuvers : CustomCard
+    class Sun : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            block.forceToAdd = -10f;
-            statModifiers.health = 1.2f;
-            block.cdAdd = 0.25f;
+            statModifiers.health = 1.5f;
+            statModifiers.gravity = 4f;
+            gun.projectileColor = Color.yellow;
+            gun.projectileSpeed = 0.25f;
+            gun.damage = 4f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
@@ -30,11 +32,11 @@ namespace Noah_s_Party_Pack.Cards
 
         protected override string GetTitle()
         {
-            return "Evasive Maneuvers";
+            return "The Sun";
         }
         protected override string GetDescription()
         {
-            return "Jump backwards when you block";
+            return "You BECOME the Sun. Increased Health and Gravity. Bullets struggle to escape your gravity, but are much stronger.";
         }
         protected override GameObject GetCardArt()
         {
@@ -42,7 +44,7 @@ namespace Noah_s_Party_Pack.Cards
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Rare;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -52,22 +54,32 @@ namespace Noah_s_Party_Pack.Cards
                 {
                     positive = true,
                     stat = "Health",
-                    amount = "+20%",
+                    amount = "1.5x",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat() 
+                {
+                    positive = true,
+                    stat = "Damage",
+                    amount = "4x",
+                },
+                new CardInfoStat() {
+                    positive = false,
+                    stat = "Bullet Speed",
+                    amount = "-4x"
                 },
                 new CardInfoStat()
                 {
                     positive = false,
-                    stat = "Block Cooldown",
-                    amount = "+0.25s",
+                    stat = "Gravity",
+                    amount = "4x",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
-
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.DefensiveBlue;
+            return CardThemeColor.CardThemeColorType.FirepowerYellow;
         }
         public override string GetModName()
         {

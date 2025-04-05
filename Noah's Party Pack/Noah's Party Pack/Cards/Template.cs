@@ -48,8 +48,15 @@ namespace Noah_s_Party_Pack.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Effect",
-                    amount = "No",
+                    stat = "",
+                    amount = "",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = false,
+                    stat = "",
+                    amount = "",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
@@ -60,7 +67,7 @@ namespace Noah_s_Party_Pack.Cards
         }
         public override string GetModName()
         {
-            return "ModName";
+            return PartyPack.ModInitials;
         }
     }
 }

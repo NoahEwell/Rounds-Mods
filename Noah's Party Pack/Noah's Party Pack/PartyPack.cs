@@ -38,6 +38,13 @@ namespace Noah_s_Party_Pack
         void Start()
         {
             CustomCard.BuildCard<EvasiveManeuvers>();
+            CustomCard.BuildCard<Sun>();
+            CustomCard.BuildCard<Slappy>();
+            CustomCard.BuildCard<Bunny>();
+            CustomCard.BuildCard<Bowser>();
+            CustomCard.BuildCard<Delayed>();
+            CustomCard.BuildCard<ForcePull>();
+            CustomCard.BuildCard<Satellite>();
             MyPartyPack = this;
         }
     }

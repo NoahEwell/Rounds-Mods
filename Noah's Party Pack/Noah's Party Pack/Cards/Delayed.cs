@@ -10,14 +10,15 @@ using UnityEngine;
 
 namespace Noah_s_Party_Pack.Cards
 {
-    class EvasiveManeuvers : CustomCard
+    class Delayed : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            block.forceToAdd = -10f;
-            statModifiers.health = 1.2f;
-            block.cdAdd = 0.25f;
+            gun.damage = 2f;
+            gun.gravity = 0f;
+            gun.projectileSpeed = 0.05f;
+            gun.reloadTimeAdd = 1f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
@@ -30,11 +31,11 @@ namespace Noah_s_Party_Pack.Cards
 
         protected override string GetTitle()
         {
-            return "Evasive Maneuvers";
+            return "Delayed";
         }
         protected override string GetDescription()
         {
-            return "Jump backwards when you block";
+            return "Shoot Slow Moving Balls of Death (Goes through Walls)";
         }
         protected override GameObject GetCardArt()
         {
@@ -42,7 +43,7 @@ namespace Noah_s_Party_Pack.Cards
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -51,23 +52,29 @@ namespace Noah_s_Party_Pack.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Health",
-                    amount = "+20%",
+                    stat = "Damage",
+                    amount = "2x",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = false,
-                    stat = "Block Cooldown",
-                    amount = "+0.25s",
+                    stat = "Attack Speed",
+                    amount = "-95%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = false,
+                    stat = "Reload Time",
+                    amount = "+1",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
-
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.DefensiveBlue;
+            return CardThemeColor.CardThemeColorType.ColdBlue;
         }
         public override string GetModName()
         {

@@ -10,14 +10,12 @@ using UnityEngine;
 
 namespace Noah_s_Party_Pack.Cards
 {
-    class EvasiveManeuvers : CustomCard
+    class Slappy : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            block.forceToAdd = -10f;
-            statModifiers.health = 1.2f;
-            block.cdAdd = 0.25f;
+            gun.knockback = 10f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
@@ -30,11 +28,11 @@ namespace Noah_s_Party_Pack.Cards
 
         protected override string GetTitle()
         {
-            return "Evasive Maneuvers";
+            return "Shovey Bullets";
         }
         protected override string GetDescription()
         {
-            return "Jump backwards when you block";
+            return "When push comes to shove...";
         }
         protected override GameObject GetCardArt()
         {
@@ -42,7 +40,7 @@ namespace Noah_s_Party_Pack.Cards
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -51,23 +49,15 @@ namespace Noah_s_Party_Pack.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Health",
-                    amount = "+20%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = false,
-                    stat = "Block Cooldown",
-                    amount = "+0.25s",
+                    stat = "Knockback",
+                    amount = "10x",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
-
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.DefensiveBlue;
+            return CardThemeColor.CardThemeColorType.TechWhite;
         }
         public override string GetModName()
         {

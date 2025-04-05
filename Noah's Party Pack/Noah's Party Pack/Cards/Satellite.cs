@@ -10,14 +10,13 @@ using UnityEngine;
 
 namespace Noah_s_Party_Pack.Cards
 {
-    class EvasiveManeuvers : CustomCard
+    class Satellite : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
-            //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            block.forceToAdd = -10f;
-            statModifiers.health = 1.2f;
-            block.cdAdd = 0.25f;
+            statModifiers.gravity = 0.25f;
+            statModifiers.movementSpeed = 1.1f;
+            statModifiers.jump = 1.5f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
@@ -30,11 +29,11 @@ namespace Noah_s_Party_Pack.Cards
 
         protected override string GetTitle()
         {
-            return "Evasive Maneuvers";
+            return "Satellite";
         }
         protected override string GetDescription()
         {
-            return "Jump backwards when you block";
+            return "Reduces gravity of the player";
         }
         protected override GameObject GetCardArt()
         {
@@ -51,23 +50,29 @@ namespace Noah_s_Party_Pack.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Health",
-                    amount = "+20%",
+                    stat = "Gravity",
+                    amount = "Reduces player gravity by 50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
-                    positive = false,
-                    stat = "Block Cooldown",
-                    amount = "+0.25s",
+                    positive = true,
+                    stat = "Movement Speed",
+                    amount = "+10%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = true,
+                    stat = "Jump",
+                    amount = "50% higher",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
-
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.DefensiveBlue;
+            return CardThemeColor.CardThemeColorType.ColdBlue;
         }
         public override string GetModName()
         {
