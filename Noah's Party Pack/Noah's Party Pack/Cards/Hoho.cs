@@ -10,21 +10,19 @@ using UnityEngine;
 
 namespace Noah_s_Party_Pack.Cards
 {
-    class Sun : CustomCard
+    class Hoho : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            statModifiers.health = 1.5f;
-            statModifiers.gravity = 4f;
-            gun.projectileColor = Color.yellow;
-            gun.projectileSpeed = 0.25f;
-            gun.damage = 4f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
-            SkinUtils.SetPlayerColor(player, Color.yellow);
+            if (!player.gameObject.GetComponent<MinionHandler>())
+            {
+                player.gameObject.AddComponent<MinionHandler>();
+            }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
@@ -33,11 +31,11 @@ namespace Noah_s_Party_Pack.Cards
 
         protected override string GetTitle()
         {
-            return "The Sun";
+            return "Hoho";
         }
         protected override string GetDescription()
         {
-            return "You BECOME the Sun. Increased Health and Gravity. Bullets struggle to escape your gravity, but are much stronger.";
+            return "Summon Hoho to attack your foes";
         }
         protected override GameObject GetCardArt()
         {
@@ -45,7 +43,7 @@ namespace Noah_s_Party_Pack.Cards
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Rare;
+            return CardInfo.Rarity.Uncommon;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -54,33 +52,15 @@ namespace Noah_s_Party_Pack.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Health",
-                    amount = "1.5x",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat() 
-                {
-                    positive = true,
-                    stat = "Damage",
-                    amount = "4x",
-                },
-                new CardInfoStat() {
-                    positive = false,
-                    stat = "Bullet Speed",
-                    amount = "-4x"
-                },
-                new CardInfoStat()
-                {
-                    positive = false,
-                    stat = "Gravity",
-                    amount = "4x",
+                    stat = "HoHo",
+                    amount = "1 Kitty",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.FirepowerYellow;
+            return CardThemeColor.CardThemeColorType.ColdBlue;
         }
         public override string GetModName()
         {
